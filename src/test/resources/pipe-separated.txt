@@ -1,0 +1,3 @@
+name | price
+phone | 2500
+TV | 4500
