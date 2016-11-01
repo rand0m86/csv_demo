@@ -33,13 +33,5 @@ average value calculation for the product currency.
 
 That said if we have products with different currencies but the same matching id than
 average will be calculated and written to each row in its own currency.
-## TODO:
-
-+ pom.xml
-+ logging
-+ tests
-- readme
-- squash
-? which currency?
 
 [jackson-dataformat-csv]: https://github.com/FasterXML/jackson-dataformat-csv
