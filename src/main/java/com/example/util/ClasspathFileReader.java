@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  */
 public class ClasspathFileReader {
 
-    public static ClasspathFileReader INSTANCE = new ClasspathFileReader();
+    public static final ClasspathFileReader INSTANCE = new ClasspathFileReader();
 
     private ClasspathFileReader() {
     }

@@ -3,10 +3,7 @@ package com.example.pojo;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import lombok.Value;
 import lombok.experimental.FieldDefaults;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -16,7 +13,7 @@ import static com.google.common.base.Preconditions.checkState;
  * Immutable POJO representing product.
  */
 @Getter
-@FieldDefaults(makeFinal=true, level= AccessLevel.PRIVATE)
+@FieldDefaults(makeFinal=true, level=AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
 public class Product {

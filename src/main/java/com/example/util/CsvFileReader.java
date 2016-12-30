@@ -1,13 +1,11 @@
 package com.example.util;
 
+import com.example.exceptions.FileNotFoundException;
+import com.example.exceptions.ParseException;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 
-import com.example.exceptions.FileNotFoundException;
-import com.example.exceptions.ParseException;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,7 +16,7 @@ import java.util.stream.Stream;
  */
 public class CsvFileReader {
 
-    public static CsvFileReader INSTANCE = new CsvFileReader();
+    public static final CsvFileReader INSTANCE = new CsvFileReader();
 
     private CsvFileReader() {
     }

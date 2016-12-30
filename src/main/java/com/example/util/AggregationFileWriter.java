@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 public class AggregationFileWriter {
     private static final Logger logger = LoggerFactory.getLogger(AggregationFileWriter.class);
 
-    public static AggregationFileWriter INSTANCE = new AggregationFileWriter();
+    public static final AggregationFileWriter INSTANCE = new AggregationFileWriter();
 
     private AggregationFileWriter() {
     }
