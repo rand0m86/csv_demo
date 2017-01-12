@@ -8,11 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static com.example.TestUtil.streamToList;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProductRepositoryImplTest {
@@ -51,10 +47,10 @@ public class ProductRepositoryImplTest {
 
         List<Product> actual = streamToList(productRepository.findProductsByMatchingId(2L));
 
-        assertThat(actual, hasSize(2));
-        assertThat(actual, containsInAnyOrder(
+        assertThat(actual).hasSize(2);
+        assertThat(actual).containsExactlyInAnyOrder(
                 new Product(1, 1000D, "GBP", 2, 2L),
-                new Product(2, 1050D, "EU", 1, 2L)));
+                new Product(2, 1050D, "EU", 1, 2L));
     }
 
     @Test
@@ -63,7 +59,7 @@ public class ProductRepositoryImplTest {
 
         List<Product> actual = streamToList(productRepository.findProductsByMatchingId(999L));
 
-        assertThat(actual, is(empty()));
+        assertThat(actual).isEmpty();
     }
 
     @Test
@@ -72,10 +68,10 @@ public class ProductRepositoryImplTest {
 
         List<Product> actual = streamToList(productRepository.findAll());
 
-        assertThat(actual, hasSize(2));
-        assertThat(actual, containsInAnyOrder(
+        assertThat(actual).hasSize(2);
+        assertThat(actual).containsExactlyInAnyOrder(
                 new Product(1, 1000D, "GBP", 2, 2L),
-                new Product(2, 1050D, "EU", 1, 2L)));
+                new Product(2, 1050D, "EU", 1, 2L));
     }
 
     @Test
@@ -84,7 +80,7 @@ public class ProductRepositoryImplTest {
 
         List<Product> actual = streamToList(productRepository.findAll());
 
-        assertThat(actual, is(empty()));
+        assertThat(actual).isEmpty();
     }
 
 }

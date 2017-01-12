@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CurrencyRepositoryImplTest {
@@ -47,7 +46,7 @@ public class CurrencyRepositoryImplTest {
         Optional<Double> expected = Optional.of(2.4);
         Optional<Double> actual = currencyRepository.getRatioForCurrency("GBP");
 
-        assertThat(actual, is(expected));
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
@@ -57,7 +56,7 @@ public class CurrencyRepositoryImplTest {
         Optional<Double> expected = Optional.empty();
         Optional<Double> actual = currencyRepository.getRatioForCurrency("WMZ");
 
-        assertThat(actual, is(expected));
+        assertThat(actual).isEqualTo(expected);
     }
 
 }

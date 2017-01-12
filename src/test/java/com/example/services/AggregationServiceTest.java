@@ -19,12 +19,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static com.example.TestUtil.streamToList;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.expectThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
@@ -60,7 +55,7 @@ public class AggregationServiceTest {
 
         List<AggregationResult> actual = streamToList(aggregationService.aggregateProducts());
 
-        assertThat(actual, is(empty()));
+        assertThat(actual).isEmpty();
     }
 
     @Test
@@ -70,7 +65,7 @@ public class AggregationServiceTest {
 
         List<AggregationResult> actual = streamToList(aggregationService.aggregateProducts());
 
-        assertThat(actual, is(empty()));
+        assertThat(actual).isEmpty();
     }
 
     @Test
@@ -80,7 +75,7 @@ public class AggregationServiceTest {
 
         List<AggregationResult> actual = streamToList(aggregationService.aggregateProducts());
 
-        assertThat(actual, is(empty()));
+        assertThat(actual).isEmpty();
     }
 
     @Test
@@ -93,7 +88,7 @@ public class AggregationServiceTest {
                 streamToList(aggregationService.aggregateProducts())
         );
 
-        assertThat("Can't find currency 'USD'", is(processingException.getMessage()));
+        assertThat("Can't find currency 'USD'").isEqualTo(processingException.getMessage());
     }
 
     @Test
@@ -104,7 +99,7 @@ public class AggregationServiceTest {
 
         List<AggregationResult> actual = streamToList(aggregationService.aggregateProducts());
 
-        assertThat(actual, is(empty()));
+        assertThat(actual).isEmpty();
     }
 
     @Test
@@ -118,7 +113,7 @@ public class AggregationServiceTest {
 
         List<AggregationResult> actual = streamToList(aggregationService.aggregateProducts());
 
-        assertThat(actual, contains(new AggregationResult(1, 10D, 10D, "USD", 0)));
+        assertThat(actual).contains(new AggregationResult(1, 10D, 10D, "USD", 0));
     }
 
     @Test
@@ -134,9 +129,9 @@ public class AggregationServiceTest {
 
         List<AggregationResult> actual = streamToList(aggregationService.aggregateProducts());
 
-        assertThat(actual, hasSize(2));
-        assertThat(actual.get(0).getAvgPrice(), is(600D));
-        assertThat(actual.get(1).getAvgPrice(), is(600D));
+        assertThat(actual).hasSize(2);
+        assertThat(actual.get(0).getAvgPrice()).isEqualTo(600D);
+        assertThat(actual.get(1).getAvgPrice()).isEqualTo(600D);
     }
 
     @Test
@@ -152,10 +147,10 @@ public class AggregationServiceTest {
 
         List<AggregationResult> actual = streamToList(aggregationService.aggregateProducts());
 
-        assertThat(actual, containsInAnyOrder(
+        assertThat(actual).containsExactlyInAnyOrder(
                 new AggregationResult(1, 500D, 750D, "PLN", 0), // 750 = 500 + (250 * 4) / 2
                 new AggregationResult(1, 250D, 187.5D, "USD", 0) // 187.5 = 250 + (500 / 4) / 2
-        ));
+        );
     }
 
     @Test
@@ -168,7 +163,7 @@ public class AggregationServiceTest {
 
         List<AggregationResult> actual = streamToList(aggregationService.aggregateProducts());
 
-        assertThat(actual, contains(new AggregationResult(1, 5_000D, 500D, "PLN", 0)));
+        assertThat(actual).contains(new AggregationResult(1, 5_000D, 500D, "PLN", 0));
     }
 
     @Test
@@ -184,10 +179,10 @@ public class AggregationServiceTest {
 
         List<AggregationResult> actual = streamToList(aggregationService.aggregateProducts());
 
-        assertThat(actual, containsInAnyOrder(
+        assertThat(actual).containsExactlyInAnyOrder(
                 new AggregationResult(1, 5_000D, 750D, "PLN", 0),
                 new AggregationResult(1, 2_500D, 187.5D, "USD", 0)
-        ));
+        );
     }
 
     @Test
@@ -203,7 +198,7 @@ public class AggregationServiceTest {
 
         List<AggregationResult> actual = streamToList(aggregationService.aggregateProducts());
 
-        assertThat(actual, contains(new AggregationResult(1, 5_000D, 500D, "PLN", 1)));
+        assertThat(actual).contains(new AggregationResult(1, 5_000D, 500D, "PLN", 1));
     }
 
     private void initCurrencyMockWith(Map<String, Double> currencies) {

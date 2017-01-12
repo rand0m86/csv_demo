@@ -9,11 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.example.TestUtil.streamToList;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MatchingRepositoryImplTest {
@@ -53,7 +49,7 @@ public class MatchingRepositoryImplTest {
         Optional<Matching> expected = Optional.of(new Matching(1L, 2L));
         Optional<Matching> actual = matchingRepository.getMatchingById(1L);
 
-        assertThat(actual, is(expected));
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
@@ -63,7 +59,7 @@ public class MatchingRepositoryImplTest {
         Optional<Matching> expected = Optional.empty();
         Optional<Matching> actual = matchingRepository.getMatchingById(5L);
 
-        assertThat(actual, is(expected));
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
@@ -72,10 +68,10 @@ public class MatchingRepositoryImplTest {
 
         List<Matching> actual = streamToList(matchingRepository.findAll());
 
-        assertThat(actual, hasSize(2));
-        assertThat(actual, containsInAnyOrder(
+        assertThat(actual).hasSize(2);
+        assertThat(actual).containsExactlyInAnyOrder(
                 new Matching(1L, 2L),
-                new Matching(2L, 3L)));
+                new Matching(2L, 3L));
     }
 
     @Test
@@ -84,6 +80,6 @@ public class MatchingRepositoryImplTest {
 
         List<Matching> actual = streamToList(matchingRepository.findAll());
 
-        assertThat(actual, is(empty()));
+        assertThat(actual).isEmpty();
     }
 }
