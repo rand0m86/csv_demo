@@ -18,8 +18,8 @@
         <lombok.version>1.16.6</lombok.version>
         <logback.version>1.1.7</logback.version>
 
-        <junit.platform.version>1.0.0-M2</junit.platform.version>
-        <junit-jupiter.version>5.0.0-M2</junit-jupiter.version>
+        <junit-jupiter.version>5.0.0-M3</junit-jupiter.version>
+        <junit.surefire-provider.version>1.0.0-M3</junit.surefire-provider.version>
         <mockito-core.version>2.2.9</mockito-core.version>
         <assertj.version>3.6.1</assertj.version>
     </properties>
@@ -78,6 +78,24 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <!-- Make JUnit 5 tests runnable under Maven -->
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>${junit.surefire-provider.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.junit.jupiter</groupId>
+                        <artifactId>junit-jupiter-engine</artifactId>
+                        <version>${junit-jupiter.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
+
 </project>
